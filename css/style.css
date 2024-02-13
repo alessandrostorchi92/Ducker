@@ -1,0 +1,73 @@
+/* COLOR PALETTE
+  dark-color: rgb(203, 224, 221); #cbe0dd;
+  lightskyblue: rgb(135, 206, 250), #87CEFA;
+  lavendergray: rgb(139, 143, 143), #8b8f8f;
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 6rem;
+    padding: 2rem;
+}
+
+.game-board {
+    width: calc((50px * 9) + 4px);
+    margin: auto;
+    border: 2px solid rgb(0, 23, 50);
+}
+
+.grid {
+    width: calc(50px * 9); 
+	height: calc(50px * 9);
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.square {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-size: contain;
+}
+
+.square-dark {
+    background-color: #cbe0dd;
+}
+
+.river {
+    background-color: lightskyblue;
+}
+
+.wood {
+    background-image: url("../images/wood.png");
+}
+
+.road {
+    background-color: #8b8f8f;
+    border-top: 1px dashed white;
+	border-bottom: 1px dashed white;
+}
+
+.bus {
+    background-image: url("../images/bus.png");
+}
+
+.car {
+    background-image: url("../images/car.png");
+}
