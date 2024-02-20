@@ -71,3 +71,19 @@ h1 {
 .car {
     background-image: url("../images/car.png");
 }
+
+.duck {
+    background-image: url("../images/duck-walk.gif");
+}
+
+.winner-duck {
+    background-image: url("../images/duck-standing.png");
+}
+
+.drowned-duck {
+    background-image: url("../images/duck-drowned.png");
+}
+
+.hit-duck {
+    background-image: url("../images/duck-hit.png");
+}

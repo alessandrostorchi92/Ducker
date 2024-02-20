@@ -9,33 +9,12 @@
  */
 const grid = document.querySelector(".grid") ?? document.createElement("div");
 
-/**
- * @type {[]}
- */
-let randomGridMatrix = []
-
-/**
- * @type {number[]}
- */
-const riverRows = [1, 2];
-
-/**
- * @type {number[]}
- */
-const roadRows = [4, 5, 6];
-
 //----------------------------------------------
-
-//* I set up the random matrix of the grid.
-
-function generateRandomMatrix() {
-    
-}
 
 //* I create the matrix of the grid
 
 /**
- * @type {Array<Array<string>>}
+ * @type {string[][]}
  */
 const gridMatrix = [
     ['', '', '', '', '', '', '', '', ''],
@@ -48,6 +27,29 @@ const gridMatrix = [
     ['', '', '', '', '', '', '', '', ''],
     ['', '', '', '', '', '', '', '', '']
 ];
+
+//* I pick up all the grid elements I need
+
+//----------------------------------------
+/**
+ * @type {number[]}
+ */
+const riverRows = [1, 2];
+
+/**
+ * @type {number[]}
+ */
+const roadRows = [4, 5, 6];
+
+/**
+ * @type {Object}
+ */
+const duckPosition = {
+    y: 8, 
+    x: 4
+};
+
+//-----------------------------------------
 
 /**
  * This function creates the chessboard effect on the grid
@@ -70,13 +72,15 @@ function getChessBoard(cell, lineIndex, cellIndex) {
  */
 function drawGrid() {
 
+    grid.innerHTML = "";
+
     gridMatrix.forEach((rowSquares, rowIndex) => {
 
         rowSquares.forEach((squareContent, squareIndex) => {
 
             const square = document.createElement("div");
             square.classList.add("square");
-            console.dir(square);
+            //? console.dir(square);
 
             if(squareContent !== "") {
                 square.classList.add(squareContent);
@@ -94,6 +98,45 @@ function drawGrid() {
         });
     });
 
+};
+
+/**
+ * This function places the duck on the grid
+ */
+function placeDuck() {
+    gridMatrix[duckPosition.y][duckPosition.x] = "duck";
+};
+
+/**
+ * This function moves the duck on the grid
+ * @param {Object} event 
+ */
+function moveDuck(event) {
+
+switch(event.key) {
+    case "ArrowUp":
+        if(duckPosition.y > 0) duckPosition.y--;
+        break;
+    case "ArrowDown":
+        if(duckPosition.y < (gridMatrix.length - 1)) duckPosition.y++;
+        break;
+    case "ArrowLeft":
+        if(duckPosition.x > 0) duckPosition.x--;
+        break;
+    case "ArrowRight":
+        if(duckPosition.x < (gridMatrix.length - 1)) duckPosition.x++;
+        break;
 }
 
-drawGrid();
+redrawGrid();
+   
+};
+
+function redrawGrid() {
+    placeDuck();
+    drawGrid();
+}
+
+document.addEventListener("keyup", moveDuck);
+
+redrawGrid();
