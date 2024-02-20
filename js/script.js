@@ -49,6 +49,11 @@ const duckPosition = {
     x: 4
 };
 
+/**
+ * @type {string}
+ */
+let contentBeforeDuck = "";
+
 //-----------------------------------------
 
 /**
@@ -104,7 +109,10 @@ function drawGrid() {
  * This function places the duck on the grid
  */
 function placeDuck() {
+
+    contentBeforeDuck = gridMatrix[duckPosition.y][duckPosition.x];
     gridMatrix[duckPosition.y][duckPosition.x] = "duck";
+
 };
 
 /**
@@ -112,6 +120,8 @@ function placeDuck() {
  * @param {Object} event 
  */
 function moveDuck(event) {
+
+gridMatrix[duckPosition.y][duckPosition.x] = contentBeforeDuck;
 
 switch(event.key) {
     case "ArrowUp":
@@ -129,12 +139,13 @@ switch(event.key) {
 }
 
 redrawGrid();
-   
+
 };
 
 function redrawGrid() {
     placeDuck();
     drawGrid();
+    console.table(gridMatrix);
 }
 
 document.addEventListener("keyup", moveDuck);
