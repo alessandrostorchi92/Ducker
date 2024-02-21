@@ -31,6 +31,12 @@ const gridMatrix = [
 //* I pick up all the grid elements I need
 
 //----------------------------------------
+
+/**
+ * @type {number}
+ */
+const victoryRow = 0;
+
 /**
  * @type {number[]}
  */
@@ -136,18 +142,43 @@ switch(event.key) {
     case "ArrowRight":
         if(duckPosition.x < (gridMatrix.length - 1)) duckPosition.x++;
         break;
+    default: 
+        return;
 }
 
 redrawGrid();
 
 };
 
-function redrawGrid() {
-    placeDuck();
-    drawGrid();
-    console.table(gridMatrix);
-}
-
 document.addEventListener("keyup", moveDuck);
 
+function redrawGrid() {
+    placeDuck();
+    checkDuckPosition();
+    drawGrid();
+    //? console.table(gridMatrix);
+    //? console.log(contentBeforeDuck);
+};
+
 redrawGrid();
+
+/**
+ * This function sets up the end game conditions
+ */
+function checkDuckPosition() {
+    if(duckPosition.y === victoryRow) {
+        endGame("winner-duck");
+    } else if((contentBeforeDuck === "river")) {
+        endGame("drowned-duck");
+    } else if (contentBeforeDuck === "car" || contentBeforeDuck === "bus") {
+        endGame("hit-duck");
+    }
+};
+
+/**
+ * This function clarifies why the ducker game comes to an end
+ * @param {string} reason 
+ */
+function endGame(reason) {
+    gridMatrix[duckPosition.y][duckPosition.x] = reason;
+};

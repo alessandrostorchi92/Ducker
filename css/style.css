@@ -87,3 +87,7 @@ h1 {
 .hit-duck {
     background-image: url("../images/duck-hit.png");
 }
+
+.river.duck {
+    background-image: url("../images/duck-walk.gif"), url("../images/wood.png");
+}
