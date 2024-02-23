@@ -26,6 +26,7 @@ h1 {
 }
 
 .game-board {
+    position: relative;
     width: calc((50px * 9) + 4px);
     margin: auto;
     border: 2px solid rgb(0, 23, 50);
@@ -90,4 +91,42 @@ h1 {
 
 .river.duck {
     background-image: url("../images/duck-walk.gif"), url("../images/wood.png");
+}
+
+.end-game-screen {
+	background-color: rgba(241, 117, 78, 0.6);
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-transform: uppercase;
+}
+
+.hidden {
+	display: none;
+}
+
+.win {
+	background-color: rgba(78, 241, 187, 0.6);
+}
+
+.end-game-text {
+	font-size: 48px;
+	line-height: 1.2;
+}
+
+button {
+	border: 2px solid rgb(0, 23, 50);
+	font-size: 24px;
+	font-family: 'Darker Grotesque', sans-serif;
+	text-transform: uppercase;
+	padding: 4px 20px 8px 20px;
+	cursor: pointer;
+}
+
+
+button:hover {
+	background-color: rgb(203, 224, 221);
 }

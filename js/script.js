@@ -9,6 +9,21 @@
  */
 const grid = document.querySelector(".grid") ?? document.createElement("div");
 
+/**
+ * @type {HTMLDivElement}
+ */
+const endGameScreen = document.querySelector('.end-game-screen') ?? document.createElement("div");
+
+/**
+ * @type {HTMLHeadingElement}
+ */
+const endGameText = document.querySelector('.end-game-text') ?? document.createElement("h2");
+
+/**
+ * @type {HTMLButtonElement}
+ */
+const playAgainButton = document.querySelector('.play-again') ?? document.createElement("button");
+
 //----------------------------------------------
 
 //* I create the matrix of the grid
@@ -51,7 +66,7 @@ const roadRows = [4, 5, 6];
  * @type {Object}
  */
 const duckPosition = {
-    y: 8, 
+    y: 8,
     x: 4
 };
 
@@ -72,7 +87,7 @@ function getChessBoard(cell, lineIndex, cellIndex) {
     const isRowEven = lineIndex % 2 === 0;
     const isCellEven = cellIndex % 2 === 0;
 
-    if(isRowEven && isCellEven || !isRowEven && !isCellEven ) {
+    if (isRowEven && isCellEven || !isRowEven && !isCellEven) {
         cell.classList.add("square-dark");
     }
 
@@ -93,15 +108,15 @@ function drawGrid() {
             square.classList.add("square");
             //? console.dir(square);
 
-            if(squareContent !== "") {
+            if (squareContent !== "") {
                 square.classList.add(squareContent);
             };
 
-            if(riverRows.includes(rowIndex)) {
+            if (riverRows.includes(rowIndex)) {
                 square.classList.add("river");
-            } else if(roadRows.includes(rowIndex)) {
+            } else if (roadRows.includes(rowIndex)) {
                 square.classList.add("road");
-            }else {
+            } else {
                 getChessBoard(square, rowIndex, squareIndex)
             };
 
@@ -127,30 +142,39 @@ function placeDuck() {
  */
 function moveDuck(event) {
 
-gridMatrix[duckPosition.y][duckPosition.x] = contentBeforeDuck;
+    gridMatrix[duckPosition.y][duckPosition.x] = contentBeforeDuck;
 
-switch(event.key) {
-    case "ArrowUp":
-        if(duckPosition.y > 0) duckPosition.y--;
-        break;
-    case "ArrowDown":
-        if(duckPosition.y < (gridMatrix.length - 1)) duckPosition.y++;
-        break;
-    case "ArrowLeft":
-        if(duckPosition.x > 0) duckPosition.x--;
-        break;
-    case "ArrowRight":
-        if(duckPosition.x < (gridMatrix.length - 1)) duckPosition.x++;
-        break;
-    default: 
-        return;
-}
+    switch (event.key) {
+        case "ArrowUp":
+            if (duckPosition.y > 0) duckPosition.y--;
+            break;
+        case "ArrowDown":
+            if (duckPosition.y < (gridMatrix.length - 1)) duckPosition.y++;
+            break;
+        case "ArrowLeft":
+            if (duckPosition.x > 0) duckPosition.x--;
+            break;
+        case "ArrowRight":
+            if (duckPosition.x < (gridMatrix.length - 1)) duckPosition.x++;
+            break;
+        default:
+            return;
+    }
 
-redrawGrid();
+    redrawGrid();
 
 };
 
+/**
+ * This function restarts the browser
+ */
+function playAgain() {
+    document.location.reload();
+}
+
 document.addEventListener("keyup", moveDuck);
+playAgainButton.addEventListener("click", playAgain);
+
 
 function redrawGrid() {
     placeDuck();
@@ -166,9 +190,9 @@ redrawGrid();
  * This function sets up the end game conditions
  */
 function checkDuckPosition() {
-    if(duckPosition.y === victoryRow) {
+    if (duckPosition.y === victoryRow) {
         endGame("winner-duck");
-    } else if((contentBeforeDuck === "river")) {
+    } else if ((contentBeforeDuck === "river")) {
         endGame("drowned-duck");
     } else if (contentBeforeDuck === "car" || contentBeforeDuck === "bus") {
         endGame("hit-duck");
@@ -180,5 +204,17 @@ function checkDuckPosition() {
  * @param {string} reason 
  */
 function endGame(reason) {
+
+    if(reason === "winner-duck") {
+        endGameScreen.classList.remove("hidden");
+        endGameScreen.classList.add("win");
+        endGameText.innerHTML = "YOU<br>WIN"; 
+    } else {
+        endGameScreen.classList.remove("hidden");
+    }
+
+    document.removeEventListener("keyup", moveDuck);
     gridMatrix[duckPosition.y][duckPosition.x] = reason;
+
 };
+
