@@ -208,13 +208,50 @@ function endGame(reason) {
     if(reason === "winner-duck") {
         endGameScreen.classList.remove("hidden");
         endGameScreen.classList.add("win");
-        endGameText.innerHTML = "YOU<br>WIN"; 
+        endGameText.innerHTML = "YOU<br>WIN";
+        clearInterval(renderingLoop);
     } else {
         endGameScreen.classList.remove("hidden");
+        clearInterval(renderingLoop);
     }
 
     document.removeEventListener("keyup", moveDuck);
     gridMatrix[duckPosition.y][duckPosition.x] = reason;
 
 };
+
+/**
+ * This function moves the rows of the grid
+ * @param {Number} rowIndex 
+ */
+function moveRow(rowIndex) {
+    const rowSquares = gridMatrix[rowIndex];
+    console.log(rowSquares);
+    const lastSquare = rowSquares.pop();
+    console.log(rowSquares);
+
+    if(lastSquare !== undefined) {
+        rowSquares.unshift(lastSquare);
+        console.log(rowSquares);
+    }
+};
+
+const renderingLoop = setInterval(() => {
+
+    gridMatrix[duckPosition.y][duckPosition.x] = contentBeforeDuck;
+    contentBeforeDuck = gridMatrix[duckPosition.y][duckPosition.x];
+
+    moveRow(1);
+    moveRow(2);
+    moveRow(4);
+    moveRow(5);
+    moveRow(6);
+
+    redrawGrid();
+
+}, 600);
+
+
+
+
 
