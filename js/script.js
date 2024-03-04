@@ -184,8 +184,6 @@ function redrawGrid() {
     //? console.log(contentBeforeDuck);
 };
 
-redrawGrid();
-
 /**
  * This function sets up the end game conditions
  */
@@ -236,14 +234,21 @@ function moveRow(rowIndex) {
     }
 };
 
-const renderingLoop = setInterval(() => {
-
+/**
+ * This function deals with the movement of the duck on the grid correctly.
+ */
+function handleDuckPosition() {
     gridMatrix[duckPosition.y][duckPosition.x] = contentBeforeDuck;
     contentBeforeDuck = gridMatrix[duckPosition.y][duckPosition.x];
 
     if (contentBeforeDuck === "wood" && duckPosition.x < gridMatrix.length - 1) {
         duckPosition.x++;
     }
+};
+
+const renderingLoop = setInterval(() => {
+
+    handleDuckPosition();
 
     moveRow(1);
     moveRow(2);
@@ -254,6 +259,8 @@ const renderingLoop = setInterval(() => {
     redrawGrid();
 
 }, 600);
+
+redrawGrid();
 
 
 
