@@ -205,7 +205,7 @@ function checkDuckPosition() {
  */
 function endGame(reason) {
 
-    if(reason === "winner-duck") {
+    if (reason === "winner-duck") {
         endGameScreen.classList.remove("hidden");
         endGameScreen.classList.add("win");
         endGameText.innerHTML = "YOU<br>WIN";
@@ -230,7 +230,7 @@ function moveRow(rowIndex) {
     const lastSquare = rowSquares.pop();
     console.log(rowSquares);
 
-    if(lastSquare !== undefined) {
+    if (lastSquare !== undefined) {
         rowSquares.unshift(lastSquare);
         console.log(rowSquares);
     }
@@ -240,6 +240,10 @@ const renderingLoop = setInterval(() => {
 
     gridMatrix[duckPosition.y][duckPosition.x] = contentBeforeDuck;
     contentBeforeDuck = gridMatrix[duckPosition.y][duckPosition.x];
+
+    if (contentBeforeDuck === "wood" && duckPosition.x < gridMatrix.length - 1) {
+        duckPosition.x++;
+    }
 
     moveRow(1);
     moveRow(2);
