@@ -24,6 +24,11 @@ const endGameText = document.querySelector('.end-game-text') ?? document.createE
  */
 const playAgainButton = document.querySelector('.play-again') ?? document.createElement("button");
 
+/**
+ * @type {HTMLDivElement}
+ */
+const scoreCounter = document.querySelector('.score-counter') ?? document.createElement("div");
+
 //----------------------------------------------
 
 //* I create the matrix of the grid
@@ -74,6 +79,11 @@ const duckPosition = {
  * @type {string}
  */
 let contentBeforeDuck = "";
+
+/**
+ * @type {number}
+ */
+let timer = 15;
 
 //-----------------------------------------
 
@@ -175,7 +185,9 @@ function playAgain() {
 document.addEventListener("keyup", moveDuck);
 playAgainButton.addEventListener("click", playAgain);
 
-
+/**
+ * This function redesigns the game grid
+ */
 function redrawGrid() {
     placeDuck();
     checkDuckPosition();
@@ -208,12 +220,15 @@ function endGame(reason) {
         endGameScreen.classList.add("win");
         endGameText.innerHTML = "YOU<br>WIN";
         clearInterval(renderingLoop);
+        clearInterval(countdown);
     } else {
         endGameScreen.classList.remove("hidden");
         clearInterval(renderingLoop);
+        clearInterval(countdown);
     }
 
     document.removeEventListener("keyup", moveDuck);
+
     gridMatrix[duckPosition.y][duckPosition.x] = reason;
 
 };
@@ -224,13 +239,13 @@ function endGame(reason) {
  */
 function moveRow(rowIndex) {
     const rowSquares = gridMatrix[rowIndex];
-    console.log(rowSquares);
+    //? console.log(rowSquares);
     const lastSquare = rowSquares.pop();
-    console.log(rowSquares);
+    //? console.log(rowSquares);
 
     if (lastSquare !== undefined) {
         rowSquares.unshift(lastSquare);
-        console.log(rowSquares);
+        //? console.log(rowSquares);
     }
 };
 
@@ -260,7 +275,27 @@ const renderingLoop = setInterval(() => {
 
 }, 600);
 
+/**
+ * This function manages the countdown.
+ */
+function manageCountdown() {
+    timer--;
+    scoreCounter.textContent = timer.toString().padStart(2);
+    //? console.log(timer);
+
+
+    if (timer === 0) {
+        endGame("time-up");
+    }
+
+}
+
 redrawGrid();
+
+const countdown = setInterval(manageCountdown, 1000);
+
+
+
 
 
 
