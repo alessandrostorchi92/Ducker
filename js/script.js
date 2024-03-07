@@ -271,11 +271,16 @@ function moveRowLeft(rowIndex) {
  */
 function handleDuckPosition() {
     gridMatrix[duckPosition.y][duckPosition.x] = contentBeforeDuck;
-    contentBeforeDuck = gridMatrix[duckPosition.y][duckPosition.x];
 
-    if (contentBeforeDuck === "wood" && duckPosition.x < gridMatrix.length - 1) {
-        duckPosition.x++;
+    if (contentBeforeDuck === "wood") {
+        if (duckPosition.y === 1 && duckPosition.x < gridMatrix.length - 1) {
+            duckPosition.x++;
+        } else if (duckPosition.y === 2 && duckPosition.x > 0) {
+            duckPosition.x--;
+        }
     }
+
+    contentBeforeDuck = gridMatrix[duckPosition.y][duckPosition.x];
 };
 
 const renderingLoop = setInterval(() => {
