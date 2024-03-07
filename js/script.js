@@ -234,10 +234,10 @@ function endGame(reason) {
 };
 
 /**
- * This function moves the rows of the grid
+ * This function moves right the rows of the grid
  * @param {Number} rowIndex 
  */
-function moveRow(rowIndex) {
+function moveRowRight(rowIndex) {
     const rowSquares = gridMatrix[rowIndex];
     //? console.log(rowSquares);
     const lastSquare = rowSquares.pop();
@@ -247,6 +247,23 @@ function moveRow(rowIndex) {
         rowSquares.unshift(lastSquare);
         //? console.log(rowSquares);
     }
+};
+
+/**
+ * This function moves left the rows of the grid
+ * @param {Number} rowIndex 
+ */
+function moveRowLeft(rowIndex) {
+    const rowSquares = gridMatrix[rowIndex];
+    //? console.log(rowSquares);
+    const firstSquare = rowSquares.shift();
+    //? console.log(rowSquares);
+
+    if (firstSquare !== undefined) {
+        rowSquares.push(firstSquare);
+        //? console.log(rowSquares);
+    }
+
 };
 
 /**
@@ -265,11 +282,11 @@ const renderingLoop = setInterval(() => {
 
     handleDuckPosition();
 
-    moveRow(1);
-    moveRow(2);
-    moveRow(4);
-    moveRow(5);
-    moveRow(6);
+    moveRowRight(1);
+    moveRowLeft(2);
+    moveRowRight(4);
+    moveRowRight(5);
+    moveRowRight(6);
 
     redrawGrid();
 
