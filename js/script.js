@@ -130,6 +130,10 @@ function drawGrid() {
                 getChessBoard(square, rowIndex, squareIndex)
             };
 
+            if (rowIndex === 5 && (squareContent === "car" || squareContent === "bus")) {
+                square.classList.add("reverse-icon");
+            }
+
             grid.append(square);
         });
     });
@@ -290,7 +294,7 @@ const renderingLoop = setInterval(() => {
     moveRowRight(1);
     moveRowLeft(2);
     moveRowRight(4);
-    moveRowRight(5);
+    moveRowLeft(5);
     moveRowRight(6);
 
     redrawGrid();

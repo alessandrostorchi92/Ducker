@@ -79,6 +79,10 @@ h1 {
     background-image: url("../images/car.png");
 }
 
+.reverse-icon {
+    transform: scaleX(-1);
+}
+
 .duck {
     background-image: url("../images/duck-walk.gif");
 }
