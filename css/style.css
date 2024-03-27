@@ -22,13 +22,17 @@ body {
 
 h1 {
     font-size: 6rem;
+    font-family: "Mochiy Pop P One", sans-serif;
     padding: 1rem;
+    color: coral;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .score-container {
+    font-family: "Micro 5", sans-serif;
     text-align: center;
     padding: 1rem;
-    font-size: 3rem;
+    font-size: 6rem;
 }
 
 .game-board {
@@ -44,6 +48,8 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
+    outline: 10px solid coral;
+    border-radius: 0.5rem;
 }
 
 .square {
