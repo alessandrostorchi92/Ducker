@@ -1,5 +1,101 @@
 @media screen and (min-width: 576px) {
+    h1 {
+        font-size: 4.5rem;
+    }
 
-    h1 {}
+    .score-container {
+        font-size: 6rem;
+    }
 
+    .game-board {
+        max-width: calc((50px * 9));
+
+    }
+
+    .grid {
+        width: calc(50px * 9);
+        height: calc(50px * 9);
+    }
+
+    .square {
+        width: 50px;
+        height: 50px;
+    }
+
+    .end-game-text {
+        font-size: 6rem;
+    }
+
+    button {
+        font-size: 1.5rem;
+        font-family: "Mochiy Pop P One", sans-serif;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    h1 {
+        font-size: 6rem;
+    }
+
+    .score-container {
+        font-size: 8rem;
+    }
+
+    .game-board {
+        max-width: calc((60px * 9));
+
+    }
+
+    .grid {
+        width: calc(60px * 9);
+        height: calc(60px * 9);
+    }
+
+    .square {
+        width: 60px;
+        height: 60px;
+    }
+
+    .end-game-text {
+        font-size: 8rem;
+    }
+
+    button {
+        font-size: 2rem;
+        font-family: "Mochiy Pop P One", sans-serif;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    h1 {
+        font-size: 8rem;
+    }
+
+    .score-container {
+        font-size: 10rem;
+    }
+
+    .game-board {
+        max-width: calc((70px * 9));
+
+    }
+
+    .grid {
+        width: calc(70px * 9);
+        height: calc(70px * 9);
+    }
+
+    .square {
+        width: 70px;
+        height: 70px;
+    }
+
+    .end-game-text {
+        font-size: 10rem;
+    }
+
+    button {
+        font-size: 3rem;
+        font-family: "Mochiy Pop P One", sans-serif;
+    }
 }
