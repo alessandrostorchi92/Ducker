@@ -227,6 +227,7 @@ function endGame(reason) {
         clearInterval(countdown);
     } else {
         endGameScreen.classList.remove("hidden");
+        endGameScreen.classList.add("lost");
         clearInterval(renderingLoop);
         clearInterval(countdown);
     }
