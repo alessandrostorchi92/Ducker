@@ -9,46 +9,45 @@ body {
 }
 
 .title-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
+    padding-top: 2rem;
 }
 
 h1 {
-    font-size: 6rem;
+    font-size: 3.5rem;
     font-family: "Mochiy Pop P One", sans-serif;
-    padding: 1rem;
     color: coral;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .score-container {
     text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     font-family: "Micro 5", sans-serif;
-    padding: 1rem;
-    font-size: 6rem;
+    font-size: 5rem;
 }
 
 .game-board {
     position: relative;
-    width: calc((50px * 9) + 4px);
+    width: 100%;
+    max-width: calc((35px * 9));
     margin: auto;
-    border: 2px solid rgb(0, 23, 50);
 }
 
 .grid {
-    width: calc(50px * 9);
-    height: calc(50px * 9);
+    width: calc(35px * 9);
+    height: calc(35px * 9);
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
-    outline: 5px solid coral;
+    outline: 6px solid coral;
     border-radius: 0.5rem;
 }
 
 .square {
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
     background-size: contain;
 }
@@ -123,14 +122,14 @@ h1 {
 }
 
 .end-game-text {
-    font-size: 6rem;
+    font-size: 4rem;
     font-family: "Micro 5", sans-serif;
     line-height: 1.2;
 }
 
 button {
     border: 2px solid rgb(0, 23, 50);
-    font-size: 24px;
+    font-size: 1rem;
     font-family: "Mochiy Pop P One", sans-serif;
     text-transform: uppercase;
     padding: 4px 20px 8px 20px;
